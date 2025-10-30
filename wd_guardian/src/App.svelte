@@ -1,47 +1,31 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import SecIntor    from './components/Sec_intor.svelte';    /* intor */
+  import SecCalendar from './components/Sec_calendar.svelte'; /* 달력 & D Day */
+  import SecGallery  from './components/Sec_gallery.svelte';  /* 앨범 */
+  import SecNavi     from './components/Sec_navi.svelte';     /* 오시는 길 */
+  import SecAccount  from './components/Sec_account.svelte';  /* 마음전하기 */
+  import SecGuest    from './components/Sec_guest.svelte';    /* 방명록 */
+  import SecShare    from './components/Sec_share.svelte';    /* 공유하기 */
 </script>
 
-<main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
+<main class='wrap'>
 
-  <div class="card">
-    <Counter />
-  </div>
+  <SecIntor />
+  <SecCalendar />
+  <SecGallery />
+  <SecNavi />
+  <SecAccount />
+  <SecGuest />
+  <SecShare />
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+  main.wrap {
+    background-color: lightgray;
+    width: 100%;
+    height: 100%;
+    max-width: 420px;
+    margin: 0 auto;
   }
 </style>
