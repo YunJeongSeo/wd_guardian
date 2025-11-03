@@ -1,5 +1,5 @@
 <script>
-  import SecIntor    from './components/Sec_intor.svelte';    /* intor */
+  import SecIntor    from './components/Sec_intro.svelte';    /* intor */
   import SecCalendar from './components/Sec_calendar.svelte'; /* 달력 & D Day */
   import SecGallery  from './components/Sec_gallery.svelte';  /* 앨범 */
   import SecNavi     from './components/Sec_navi.svelte';     /* 오시는 길 */
@@ -20,12 +20,13 @@
 
 </main>
 
-<style>
+<style global>
   main.wrap {
     background-color: lightgray;
     width: 100%;
     height: 100%;
     max-width: 420px;
     margin: 0 auto;
+    padding: 60px 0;
   }
 </style>
