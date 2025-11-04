@@ -16,7 +16,7 @@
     <div class="head-tit">
 
       <div class="tit-name groom">신랑</div>
-      <div class="tit-name icon"><i class="fa-solid fa-heart"></i></div>
+      <div class="tit-name icon" ><i class="fa-solid fa-heart"></i></div>
       <div class="tit-name bride">신부</div>
 
     </div>
@@ -202,7 +202,7 @@
 
     /* OP TEXT */
     .op-text {
-      font-size: 8.88vw;
+      font-size: 32px;
       letter-spacing: -1px;
       text-align: center;
       margin-top: 26px;

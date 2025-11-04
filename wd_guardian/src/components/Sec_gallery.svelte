@@ -5,6 +5,50 @@
   */
 </script>
 
-<section class="">
-  <h1>사진앨범</h1>
+<section class="sec sec-gal">
+
+
+  <!-- GALLERY TITLE -->
+  <div class="gal-title">
+    <p>앨범</p>
+  </div>
+  <!-- GALLERY TITLE // -->
+
+
+  <!-- GALLERY BLOCK -->
+  <div class="gal-block"></div>
+  <!-- GALLERY BLOCK // -->
+
+
 </section>
+
+
+
+<style>
+  section {
+    border: 1px solid red;
+    padding: 0 36px;
+    font-size: .875rem;
+  }
+
+  p { 
+    margin: unset;
+  }
+
+
+  /* SECTION GALLERY */
+  .sec-gal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+
+  /* GALLERY TITLE */
+  .gal-title {
+    margin-top: 42px;
+    font-size: .875rem;
+  }
+
+</style>
