@@ -16,7 +16,16 @@
 
 
   <!-- GALLERY BLOCK -->
-  <div class="gal-block"></div>
+  <div class="gal-block">
+
+
+    <div class="gal-box"></div>
+    <div class="gal-box"></div>
+    <div class="gal-box"></div>
+    <div class="gal-box"></div>
+
+
+  </div>
   <!-- GALLERY BLOCK // -->
 
 
@@ -49,6 +58,21 @@
   .gal-title {
     margin-top: 42px;
     font-size: .875rem;
+  }
+
+
+  /* GALLERY BLOCK */
+  .gal-block {
+    width: 100%;
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    gap: 6px;
+
+
+    .gal-box {
+      min-height: 215px;
+      border: 1px solid cornflowerblue;
+    }
   }
 
 </style>

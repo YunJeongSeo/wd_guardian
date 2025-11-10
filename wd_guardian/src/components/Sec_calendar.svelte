@@ -60,6 +60,12 @@
   /* CALENDAR block */
   .cal-block {
     margin-top: 74px;
+
+    h1 {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    
   }
 
 
