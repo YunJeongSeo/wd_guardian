@@ -137,7 +137,9 @@
         <li class="trans-subway">
 
           <p class="trans-info-tit">지하철</p>
-          <p class="trans-subway-info"></p>
+          <p class="trans-subway-info">
+            1호선 교대역하차 5번출구 이용
+          </p>
 
         </li>
         <!-- TRANS SUBWAY // -->
@@ -147,7 +149,9 @@
         <li class="trans-bus">
 
           <p class="trans-info-tit">버스</p>
-          <p class="trans-bus-info"></p>
+          <p class="trans-bus-info">
+            2, 17, 2, 26, 27, 43, 52, 59, 61, 67, 81, 82, 85, 88, 101, 103, 134, 167
+          </p>
           
         </li>
         <!-- TRANS BUS // -->
@@ -158,7 +162,14 @@
 
           
           <p class="trans-info-tit">기타 교통정보</p>
-          <p class="trans-etc-info"></p>
+          <p class="trans-etc-info">
+            주차 안내 <br/>
+            1.웨딩홀 주차장(DGB생명빌딩) <br/>
+            (웨딩홀 이용시) 1시간 30분 무료 / <br/>
+            (뷔페 이용시) 2시간 30분 무료 <br/>
+            2.이근 주차장(부산주차장, 범일그린주차장) <br/>
+            (웨딩홀 이용시) 1시간 무료 / (뷔페 이용시) 2시간 무료 
+          </p>
 
 
         </li>
@@ -185,13 +196,19 @@
 
 <style>
   section {
-    border: 1px solid red;
+    
     padding: 0 36px;
     font-size: .875rem;
   }
 
   p { 
     margin: unset;
+  }
+
+  
+  ul, li {
+    margin: unset;
+    padding: unset;
   }
 
 
@@ -270,9 +287,11 @@
     }
 
 
+
+
   }
   
 
 
 
-</style>
+</style>  

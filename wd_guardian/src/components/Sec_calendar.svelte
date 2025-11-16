@@ -39,7 +39,7 @@
 
 <style>
   section {
-    border: 1px solid red;
+    
     padding: 0 36px;
     font-size: .875rem;
   }

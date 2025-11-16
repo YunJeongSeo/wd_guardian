@@ -22,7 +22,7 @@
 
 <style global>
   main.wrap {
-    background-color: lightgray;
+    /* background-color: lightgray; */
     width: 100%;
     height: 100%;
     max-width: 420px;
