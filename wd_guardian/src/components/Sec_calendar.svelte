@@ -20,10 +20,10 @@
   <!-- DDAY BLOCK -->
   <div class="dday-block">
 
-    <div class="flexrow">
-      <span class="dday-groom">신랑</span>
+    <div class="flexrow white-nowrap">
+      <span class="dday-groom">태수호</span>
       <span class="dday-icon" ><i class="fa-solid fa-heart"></i></span>
-      <span class="dday-bride">신부</span>
+      <span class="dday-bride">전혜선</span>
     </div>
 
     <span>의 결혼식이&nbsp;</span>
@@ -40,7 +40,7 @@
 <style>
   section {
     
-    padding: 0 36px;
+    padding: 0 5%;
     font-size: .875rem;
   }
 

@@ -15,9 +15,9 @@
     <!-- HEAD TITLE -->
     <div class="head-tit">
 
-      <div class="tit-name groom">신랑</div>
+      <div class="tit-name groom">태수호</div>
       <div class="tit-name icon" ><i class="fa-solid fa-heart"></i></div>
-      <div class="tit-name bride">신부</div>
+      <div class="tit-name bride">전혜선</div>
 
     </div>
     <!-- HEAD TITLE // -->
@@ -35,8 +35,8 @@
     <!-- OP TEXT -->
     <div class="op-text">
       
-      <p>Happy wedding day</p>
-      <img src="" alt="">
+      <p class='playfair-display-font'>Happy wedding day</p>
+      <img src="/src/assets/img/sec_intro_dev.png" alt="">
       
     </div>
     <!-- OP TEXT // -->
@@ -53,8 +53,8 @@
     <!-- WD DATE CONT -->
     <div class="wd-date-cont">
 
-      <p class="wd-date">0000년 00월 00일 0요일 오전 00시 00분</p>
-      <p class="wd-loca">우리 컨벤션 웨딩홀</p>
+      <p class="wd-date">2026년 02월 22일 일요일 오후 1시</p>
+      <p class="wd-loca">W웨딩 K웨딩홀</p>
       
     </div>
     <!-- WD DATE CONT // -->
@@ -66,7 +66,7 @@
 
 
       <!-- IMG -->
-      <img src="" alt="">
+      <img src="/src/assets/img/sec_intro_flower.png" alt="">
       <!-- IMG -->
 
 
@@ -96,9 +96,9 @@
         <!-- 부모님 -->
         <div class="parnts">
           
-          <p class="dad">김아빠</p>
+          <p class="dad">태진휘</p>
           <p class="div-icon"><i class="fa-solid fa-circle"></i></p>
-          <p class="mom">이엄마</p>
+          <p class="mom">하미숙</p>
 
         </div>
         <!-- 부모님 // -->
@@ -106,8 +106,8 @@
         <!-- 커플 -->
         <div class="coup">
 
-          <p class="num">일번</p>
-          <p class="you">신랑님</p>
+          <p class="num">차남</p>
+          <p class="you">태수호</p>
 
         </div>
         <!-- 커플 // -->
@@ -123,9 +123,9 @@
         <!-- 부모님 -->
         <div class="parnts">
           
-          <p class="dad">박아빠</p>
+          <p class="dad">전명진</p>
           <p class="div-icon"><i class="fa-solid fa-circle"></i></p>
-          <p class="mom">최엄마</p>
+          <p class="mom">유재임</p>
 
         </div>
         <!-- 부모님 // -->
@@ -133,8 +133,8 @@
         <!-- 커플 -->
         <div class="coup">
 
-          <p class="num">삼번</p>
-          <p class="you">신부님</p>
+          <p class="num">차녀</p>
+          <p class="you">전혜선</p>
 
         </div>
         <!-- 커플 // -->
@@ -158,7 +158,7 @@
 <style>
   section {
     
-    padding: 0 36px;
+    padding: 0 5%;
     font-size: .875rem;
   }
 
@@ -167,14 +167,13 @@
   }
   
   .intro-block {
-    border: 1px solid blue;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
-
+  
+  
   /* OPENING AREA */
   .op-area {
     
@@ -182,7 +181,10 @@
     .head-tit {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 2px;
+      font-size: 1.125rem;
+
+      .icon { font-size: .875rem ;}
     }
 
 
@@ -230,6 +232,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      word-break: keep-all;
     }
 
 
@@ -248,6 +251,7 @@
         align-items: center;
         text-align: center;
         margin-top: 30px;
+        word-break: keep-all;
       }
 
     }

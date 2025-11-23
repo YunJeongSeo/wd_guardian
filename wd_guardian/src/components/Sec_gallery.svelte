@@ -36,7 +36,7 @@
 <style>
   section {
     
-    padding: 0 36px;
+    padding: 0 5%;
     font-size: .875rem;
   }
 

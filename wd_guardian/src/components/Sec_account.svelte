@@ -95,7 +95,7 @@
 
 <style>
   .account-section {
-    padding: 60px 20px;
+    padding: 70px 20px;
     background-color: #fff;
   }
 
@@ -105,8 +105,8 @@
   }
 
   .account-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: .875rem;
+    /* font-weight: 600; */
     text-align: center;
     color: #333;
     margin-bottom: 40px;
@@ -119,12 +119,13 @@
   }
 
   .account-item {
-    margin: 30px 0;
+    margin: 26px 0 32px;
+    padding: 0 10px;
   }
 
   .account-label {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: .875rem;
+    /* font-weight: 600; */
     color: #333;
     margin-bottom: 15px;
   }
@@ -132,8 +133,6 @@
   .account-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 15px;
   }
 
   .account-details {
@@ -141,38 +140,41 @@
   }
 
   .bank-info {
-    font-size: 1rem;
+    font-size: .875rem;
     color: #333;
     margin-bottom: 5px;
-    font-weight: 500;
+    /* font-weight: 500; */
   }
 
   .account-name {
-    font-size: 0.95rem;
+    font-size: .875rem;
     color: #666;
   }
 
   .account-buttons {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 3px;
   }
 
   .btn-copy, .btn-card {
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 55px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #cccccc;
     background-color: #f5f5f5;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.625rem;
     font-weight: 500;
     transition: all 0.2s ease;
-    min-width: 80px;
+    box-sizing: border-box;
   }
 
   .btn-copy {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #cccccc;
+    color: #ffffff;
   }
 
   .btn-copy:hover {
@@ -214,7 +216,7 @@
 
   @media (max-width: 480px) {
     .account-title {
-      font-size: 1.3rem;
+      /* font-size: 1.3rem; */
     }
 
     .account-info {

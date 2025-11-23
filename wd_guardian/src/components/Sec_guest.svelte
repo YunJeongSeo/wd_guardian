@@ -49,7 +49,7 @@
       {#each guestbookEntries as entry (entry.id)}
         <div class="guestbook-card">
           <button class="btn-delete" onclick={() => deleteEntry(entry.id)}>
-            ✕
+            <i class="fa-solid fa-xmark"></i>
           </button>
           <h3 class="entry-name">{entry.name}</h3>
           <p class="entry-message">{entry.message}</p>
@@ -89,7 +89,7 @@
 
 <style>
   .guest-section {
-    padding: 60px 20px;
+    padding: 0 20px 60px;
     background-color: #fff;
   }
 
@@ -99,26 +99,26 @@
   }
 
   .guest-title {
-    font-size: 1.8rem;
+    font-size: .875rem;
     font-weight: 600;
     text-align: center;
     color: #333;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
 
   .guestbook-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 8px;
+    /* margin-bottom: 40px; */
   }
 
   .guestbook-card {
     position: relative;
-    padding: 25px 30px;
-    background-color: #fafafa;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 12px 14px;
+    /* background-color: #fafafa; */
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
     transition: box-shadow 0.2s ease;
   }
 
@@ -127,56 +127,57 @@
   }
 
   .btn-delete {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 30px;
-    height: 30px;
+    top: 12px;
+    right: 14px;
     border: none;
     background: none;
     color: #999;
-    font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.2s ease;
-    line-height: 1;
-  }
+    padding: unset;
+    outline: unset;
+    box-sizing: border-box;
+}
 
-  .btn-delete:hover {
-    color: #d32f2f;
-  }
 
   .entry-name {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: .875rem;
+    /* font-weight: 600; */
     color: #333;
-    margin-bottom: 12px;
+    margin-bottom: unset;
   }
-
+  
   .entry-message {
-    font-size: 1rem;
+    font-size: .75rem;
     color: #555;
-    line-height: 1.6;
+    margin-bottom: unset;
+    line-height: 2;
   }
 
   .bottom-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 10px;
   }
 
   .pagination {
     display: flex;
-    gap: 10px;
+    /* gap: 10px; */
   }
 
   .page-btn {
-    width: 40px;
-    height: 40px;
+    width: 26px;
     border: none;
     background-color: transparent;
-    color: #999;
-    font-size: 1.1rem;
+    color: #BCBCBC;
+    font-size: .875rem;
     cursor: pointer;
     transition: all 0.2s ease;
     border-radius: 4px;
@@ -193,15 +194,20 @@
   }
 
   .btn-write {
-    padding: 12px 30px;
-    background-color: #d0d0d0;
+    width: 78px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C6C6C6;
     color: #fff;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 3px;
+    font-size: .875rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
+    outline: unset;
   }
 
   .btn-write:hover {

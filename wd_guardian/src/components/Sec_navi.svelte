@@ -111,7 +111,7 @@
 
       <!-- WEDDING HALL NUMBER -->
       <div class="hall-num">
-        TEL : <span class="hall-num-txt">000-000-0000</span>
+        TEL : <span class="hall-num-txt">051-551-9779</span>
       </div>
       <!-- WEDDING HALL NUMBER // -->
 
@@ -197,7 +197,7 @@
 <style>
   section {
     
-    padding: 0 36px;
+    padding: 0 5%;
     font-size: .875rem;
   }
 
@@ -229,6 +229,7 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
+    margin-top: 10px;
   }
 
 
@@ -252,6 +253,7 @@
   /* WEDDING HALL ADDRESS */
   .wd-addr {
     table-layout: fixed;
+    margin-top: 7px;
 
     .cell-tit {
       white-space: nowrap;
@@ -287,8 +289,47 @@
     }
 
 
+  }
 
 
+  /* WEDDING HALL NUMBER */
+  .hall-num {
+    margin-top: 20px;
+  }
+
+
+
+  /* MAP INFO */
+  .map-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  /* MAP API */
+  .map-api {
+    width: 100px;
+    height: 100px;
+    border: 1px solid salmon;
+  }
+  
+
+
+  /* TRANSPORT INFO */
+  .trans-info {
+    width: 100%;
+    margin-top: 32px;
+    
+    li {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      word-break: keep-all;
+      &:not(:first-child) {
+        margin-top: 20px;
+      }
+    }
   }
   
 

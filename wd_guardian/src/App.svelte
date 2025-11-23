@@ -22,6 +22,7 @@
 </main>
 
 <style global>
+
   main.wrap {
     /* background-color: lightgray; */
     width: 100%;
@@ -29,5 +30,12 @@
     max-width: 420px;
     margin: 0 auto;
     padding: 60px 0;
+    background-color: #fff;
+    font-family: Pretendard;
+    font-weight: 400;
+    box-shadow: 0 0 75px -11px #f1f1f1;
   }
+
+
+
 </style>
