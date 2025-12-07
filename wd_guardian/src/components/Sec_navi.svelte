@@ -284,6 +284,7 @@
         outline: unset;
         background-color: #D9D9D9;
         border: unset;
+        white-space: nowrap;
       }
 
     }

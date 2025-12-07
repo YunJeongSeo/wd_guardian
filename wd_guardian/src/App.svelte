@@ -1,5 +1,5 @@
 <script>
-
+  
   import SecIntor    from './components/Sec_intro.svelte';    /* intor */
   import SecCalendar from './components/Sec_calendar.svelte'; /* 달력 & D Day */
   import SecGallery  from './components/Sec_gallery.svelte';  /* 앨범 */
@@ -10,7 +10,6 @@
 </script>
 
 <main class='wrap'>
-
   <SecIntor />
   <SecCalendar />
   <SecGallery />

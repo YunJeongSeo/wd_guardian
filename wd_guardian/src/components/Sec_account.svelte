@@ -214,23 +214,4 @@
     }
   }
 
-  @media (max-width: 480px) {
-    .account-title {
-      /* font-size: 1.3rem; */
-    }
-
-    .account-info {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .account-buttons {
-      flex-direction: row;
-      width: 100%;
-    }
-
-    .btn-copy, .btn-card {
-      flex: 1;
-    }
-  }
 </style>

@@ -26,7 +26,7 @@
     <!-- OP IMG -->
     <div class="op-img">
 
-      <img src="" alt="">
+      <img src="/src/assets/img/wd_photo/wd_img_2.jpg" alt="">
 
     </div>
     <!-- OP IMG -->
@@ -190,15 +190,20 @@
 
     /* OP IMG */
     .op-img {
-      border: 1px solid slategrey;
       width: 100%;
       height: 95.55vw;
-      max-height: 430px;
-      border-radius: 52.45% 52.45% 0 0;
+      max-height: 520px;
+      aspect-ratio: 4 / 3;   /* 비율 자동 유지 */
+      border-radius: 200px 200px 0 0;
       overflow: hidden;
       margin-top: 32px;
 
-      img { width: 100%; }
+      img { 
+        width: 100%;
+        height: 100%;
+        object-fit: cover;       /* 비율 유지 + 꽉 채움 */
+        object-position: center; /* 중앙 기준으로 잘리게 */
+      }
     }
 
 
