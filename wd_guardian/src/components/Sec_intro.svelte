@@ -3,6 +3,9 @@
    *@Overview intro 화면
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
+  import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
+  import introDevImg from '../assets/img/sec_intro_dev.png';
+  import introFlowerImg from '../assets/img/sec_intro_flower.png';
 </script>
 
 <section class="sec sec-intro">
@@ -26,7 +29,7 @@
     <!-- OP IMG -->
     <div class="op-img">
 
-      <img src="/src/assets/img/wd_photo/wd_img_2.jpg" alt="">
+      <img src={wdImg2} alt="">
 
     </div>
     <!-- OP IMG -->
@@ -34,10 +37,10 @@
 
     <!-- OP TEXT -->
     <div class="op-text">
-      
+
       <p class='playfair-display-font'>Happy wedding day</p>
-      <img src="/src/assets/img/sec_intro_dev.png" alt="">
-      
+      <img src={introDevImg} alt="">
+
     </div>
     <!-- OP TEXT // -->
 
@@ -66,7 +69,7 @@
 
 
       <!-- IMG -->
-      <img src="/src/assets/img/sec_intro_flower.png" alt="">
+      <img src={introFlowerImg} alt="">
       <!-- IMG -->
 
 
