@@ -33,6 +33,11 @@
     const waitForKakao = () => {
       if (typeof window.kakao !== 'undefined' && window.kakao.maps) {
         initPlacesSearch();
+        // Kakao SDK 초기화 (네비게이션 기능용)
+        // if (typeof window.Kakao !== 'undefined' && !window.Kakao.isInitialized()) {
+          // 실제 사용 시에는 발급받은 JavaScript 키를 입력해야 합니다
+          window.Kakao.init('b4c22e568843a2f03fb73dcc28457cb4');
+        // }
       } else {
         setTimeout(waitForKakao, 500);
       }
@@ -160,6 +165,33 @@
       // 데스크톱이나 앱 미설치 시 웹으로 이동
       const routeUrl = `https://map.kakao.com/link/from/${startName},${startLat},${startLng}/to/국제빌딩,${endLat},${endLng}`;
       window.open(routeUrl, '_blank');
+    }
+  }
+
+  // 카카오 네비 앱 실행 함수
+  function openKakaoNavi() {
+    // 도착지 좌표 (웨딩홀)
+    const endLat = 35.1867;
+    const endLng = 129.0803;
+
+    // 모바일 기기에서 카카오네비 앱 실행
+    if (isMobile() && typeof window.Kakao !== 'undefined' && window.Kakao.Navi) {
+      try {
+        window.Kakao.Navi.start({
+          name: '국제빌딩 4층',
+          x: endLng,
+          y: endLat,
+          coordType: 'wgs84'
+        });
+      } catch (error) {
+        alert('카카오네비 앱을 설치해주세요.');
+        // 카카오네비 설치 페이지로 이동
+        window.open('https://play.google.com/store/apps/details?id=com.locnall.KimGiSa', '_blank');
+      }
+    } else if (!isMobile()) {
+      alert('카카오네비는 모바일 앱에서만 사용할 수 있습니다.');
+    } else {
+      alert('카카오 SDK가 로드되지 않았습니다.');
     }
   }
 
@@ -326,7 +358,13 @@
             {/if}
           </div>
           <input type="text" bind:value={endInput} placeholder="도착지" disabled />
-          <button on:click={findRoute} class="route-btn">길찾기</button>
+          <div class="button-container">
+            <button on:click={findRoute} class="route-btn">길찾기</button>
+            <button on:click={openKakaoNavi} class="kakao-navi-btn">
+              <img src="https://developers.kakao.com/assets/img/about/buttons/navi/kakaonavi_btn_medium.png" alt="카카오네비" class="kakao-navi-icon" />
+              카카오 네비
+            </button>
+          </div>
         </div>
       </div>
 
@@ -659,14 +697,20 @@
     color: #b8a5a5;
   }
 
+  .button-container {
+    display: flex;
+    gap: 10px;
+  }
+
   .route-btn {
-    padding: 12px;
+    flex: 1;
+    padding: 8px;
     background: linear-gradient(135deg, #d4a5a5 0%, #c49595 100%);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 20px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 400;
     transition: all 0.3s;
   }
@@ -674,6 +718,34 @@
   .route-btn:hover {
     background: linear-gradient(135deg, #c49595 0%, #b88585 100%);
     transform: translateY(-1px);
+  }
+
+  .kakao-navi-btn {
+    flex: 1;
+    padding: 8px 12px;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 400;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .kakao-navi-btn:hover {
+    background: linear-gradient(135deg, #FFB300 0%, #FFA000 100%);
+    transform: translateY(-1px);
+  }
+
+  .kakao-navi-icon {
+    width: 30px;
+    height: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
   }
   
 
