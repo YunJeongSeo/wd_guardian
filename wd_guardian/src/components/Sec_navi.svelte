@@ -195,6 +195,48 @@
     }
   }
 
+
+  // T MAP 앱 실행 함수
+  function openTMap() {
+    const endLat = 35.1867; // 웨딩홀 위도
+    const endLng = 129.0803; // 웨딩홀 경도
+    const endName = '국제빌딩 4층';
+
+    // 출발지가 선택된 경우 출발지 정보 포함
+    let tmapDeepLink, tmapWebUrl;
+
+    if (selectedStartPlace) {
+      // 출발지가 선택된 경우: 출발지부터 도착지까지 경로
+      const startLat = selectedStartPlace.y;
+      const startLng = selectedStartPlace.x;
+      const startName = selectedStartPlace.place_name;
+
+      tmapDeepLink = `tmap://route?startx=${startLng}&starty=${startLat}&goalx=${endLng}&goaly=${endLat}&startname=${encodeURIComponent(startName)}&goalname=${encodeURIComponent(endName)}`;
+      tmapWebUrl = `https://tmap.life/route?startx=${startLng}&starty=${startLat}&goalx=${endLng}&goaly=${endLat}&startname=${encodeURIComponent(startName)}&goalname=${encodeURIComponent(endName)}`;
+    } else {
+      // 출발지가 선택되지 않은 경우: 도착지만 지정 (앱에서 출발지 선택 또는 현재 위치 사용)
+      tmapDeepLink = `tmap://route?goalx=${endLng}&goaly=${endLat}&goalname=${encodeURIComponent(endName)}`;
+      tmapWebUrl = `https://tmap.life/route?goalx=${endLng}&goaly=${endLat}&goalname=${encodeURIComponent(endName)}`;
+    }
+
+    // 모바일 환경에서 T MAP 앱 실행 시도
+    if (isMobile()) {
+      // 먼저 앱 실행 시도
+      window.location.href = tmapDeepLink;
+
+      // 앱이 설치되어 있지 않은 경우 2초 후 웹으로 이동
+      setTimeout(() => {
+        // 사용자가 아직 페이지에 있고, 앱이 실행되지 않은 경우에만 웹 열기
+        if (document.hasFocus() && document.visibilityState === 'visible') {
+          window.open(tmapWebUrl, '_blank');
+        }
+      }, 2000);
+    } else {
+      // PC 환경에서는 웹으로 열기
+      window.open(tmapWebUrl, '_blank');
+    }
+  }
+
 </script>
 
 <section class="sec sec-navi">
@@ -362,7 +404,11 @@
             <button on:click={findRoute} class="route-btn">길찾기</button>
             <button on:click={openKakaoNavi} class="kakao-navi-btn">
               <img src="https://developers.kakao.com/assets/img/about/buttons/navi/kakaonavi_btn_medium.png" alt="카카오네비" class="kakao-navi-icon" />
-              카카오 네비
+              카카오내비
+            </button>
+            <button on:click={openTMap} class="tmap-btn">
+              <img src="/src/assets/img/tmap.png" alt="T MAP" class="tmap-icon" />
+              T MAP
             </button>
           </div>
         </div>
@@ -699,7 +745,7 @@
 
   .button-container {
     display: flex;
-    gap: 10px;
+    gap: 8px;
   }
 
   .route-btn {
@@ -737,11 +783,39 @@
   }
 
   .kakao-navi-btn:hover {
-    background: linear-gradient(135deg, #FFB300 0%, #FFA000 100%);
+    background: linear-gradient(135deg, #FFE55C 0%, #FFD700 100%);
     transform: translateY(-1px);
   }
 
   .kakao-navi-icon {
+    width: 30px;
+    height: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .tmap-btn {
+    flex: 1;
+    padding: 8px 12px;
+    color: #000000;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 400;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .tmap-btn:hover {
+    background: linear-gradient(135deg, #42A5F5 0%, #2196F3 100%);
+    transform: translateY(-1px);
+  }
+
+  .tmap-icon {
     width: 30px;
     height: auto;
     border-radius: 10px;
