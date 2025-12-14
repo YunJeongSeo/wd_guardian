@@ -3,6 +3,166 @@
    *@Overview 오시는길
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
+  import KakaoMap from '../lib/KakaoMap.svelte';
+
+  let startInput = '';
+  let endInput = '부산광역시 연제구 거제 1동 76-2 국제빌딩 4층';
+  let searchResults = [];
+  let showResults = false;
+  let isSearching = false;
+  let ps;
+  let searchTimeout;
+  let selectedStartPlace = null;
+
+  // 모바일 기기 감지 함수
+  function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }
+
+  // 카카오 장소 검색 초기화
+  function initPlacesSearch() {
+    if (typeof window.kakao !== 'undefined' && window.kakao.maps && window.kakao.maps.services) {
+      ps = new window.kakao.maps.services.Places();
+    }
+  }
+
+  // onMount에서 장소 검색 초기화
+  import { onMount } from 'svelte';
+  onMount(() => {
+    // Kakao API가 로드될 때까지 대기
+    const waitForKakao = () => {
+      if (typeof window.kakao !== 'undefined' && window.kakao.maps) {
+        initPlacesSearch();
+      } else {
+        setTimeout(waitForKakao, 500);
+      }
+    };
+
+    waitForKakao();
+  });
+
+  // 실시간 장소 검색 함수
+  function onInputSearch(event) {
+    const keyword = event.target.value.trim();
+
+    // 이전 검색 취소
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    // 입력값이 없으면 결과 숨김
+    if (!keyword) {
+      showResults = false;
+      isSearching = false;
+      searchResults = [];
+      return;
+    }
+
+    if (!ps) {
+      return;
+    }
+
+    // 검색 시작 표시
+    isSearching = true;
+    showResults = true;
+
+    // 300ms 디바운싱
+    searchTimeout = setTimeout(() => {
+      ps.keywordSearch(keyword, placesSearchCB);
+    }, 300);
+  }
+
+  // 검색 버튼 클릭 시 검색 함수
+  function onSearchClick() {
+    const keyword = startInput.trim();
+
+    // 이전 검색 취소
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+
+    // 입력값이 없으면 결과 숨김
+    if (!keyword) {
+      showResults = false;
+      isSearching = false;
+      searchResults = [];
+      return;
+    }
+
+    if (!ps) {
+      return;
+    }
+
+    // 검색 시작 표시
+    isSearching = true;
+    showResults = true;
+    searchResults = [];
+
+    // 즉시 검색 실행
+    ps.keywordSearch(keyword, placesSearchCB);
+  }
+
+  // 장소 검색 콜백
+  function placesSearchCB(data, status) {
+    isSearching = false; // 검색 완료
+
+    if (status === window.kakao.maps.services.Status.OK) {
+      searchResults = data;
+      showResults = true;
+    } else {
+      searchResults = [];
+      showResults = false;
+    }
+  }
+
+  // 출발지 설정
+  function setStartPlace(place) {
+    selectedStartPlace = place;
+    startInput = place.place_name;
+    showResults = false;
+    isSearching = false;
+    searchResults = [];
+  }
+
+
+  // 길찾기 함수
+  function findRoute() {
+    if (!selectedStartPlace) {
+      alert('출발지를 검색하여 선택해주세요.');
+      return;
+    }
+
+    const startLat = selectedStartPlace.y;
+    const startLng = selectedStartPlace.x;
+    const startName = encodeURIComponent(selectedStartPlace.place_name);
+
+    // 도착지 좌표 (웨딩홀)
+    const endLat = 35.1867;
+    const endLng = 129.0803;
+    const endName = encodeURIComponent('부산광역시 연제구 거제 1동 76-2 국제빌딩 4층');
+
+    // 모바일 기기에서는 카카오내비 앱 실행 시도
+    if (isMobile() && typeof window.Kakao !== 'undefined' && window.Kakao.Navi) {
+      try {
+        // 도착지 좌표로 길찾기 (웨딩홀 좌표 사용)
+        window.Kakao.Navi.start({
+          name: '국제빌딩 4층',
+          x: endLng,
+          y: endLat,
+          coordType: 'wgs84'
+        });
+      } catch (error) {
+        // 카카오내비 앱이 설치되지 않은 경우 웹으로 이동
+        const routeUrl = `https://map.kakao.com/link/from/${startName},${startLat},${startLng}/to/국제빌딩,${endLat},${endLng}`;
+        window.open(routeUrl, '_blank');
+      }
+    } else {
+      // 데스크톱이나 앱 미설치 시 웹으로 이동
+      const routeUrl = `https://map.kakao.com/link/from/${startName},${startLat},${startLng}/to/국제빌딩,${endLat},${endLng}`;
+      window.open(routeUrl, '_blank');
+    }
+  }
+
 </script>
 
 <section class="sec sec-navi">
@@ -126,7 +286,49 @@
 
 
       <!-- MAP API -->
-      <div class="map-api"></div>
+      <div class="map-api">
+        <KakaoMap latitude={35.1867} longitude={129.0803} level={3} />
+      </div>
+
+      <!-- 길찾기 컨테이너 -->
+      <div class="search-container">
+        <div class="route-box">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              bind:value={startInput}
+              placeholder="출발지 검색"
+              class="start-input"
+            />
+            <button on:click={onSearchClick} class="search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            {#if showResults}
+              <div class="dropdown-results">
+                {#if isSearching}
+                  <div class="loading-item">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    검색 중...
+                  </div>
+                {:else if searchResults.length > 0}
+                  {#each searchResults as place}
+                    <div class="dropdown-item" on:click={() => setStartPlace(place)}>
+                      <div class="place-name">{place.place_name}</div>
+                      <div class="place-address">{place.address_name}</div>
+                    </div>
+                  {/each}
+                {:else}
+                  <div class="no-results-item">
+                    검색 결과가 없습니다.
+                  </div>
+                {/if}
+              </div>
+            {/if}
+          </div>
+          <input type="text" bind:value={endInput} placeholder="도착지" disabled />
+          <button on:click={findRoute} class="route-btn">길찾기</button>
+        </div>
+      </div>
 
 
       <!-- TRANSPORT INFO -->
@@ -310,9 +512,168 @@
 
   /* MAP API */
   .map-api {
-    width: 100px;
-    height: 100px;
-    border: 1px solid salmon;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* 길찾기 컨테이너 */
+  .search-container {
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+  }
+
+  .start-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #e8d5d5;
+    border-radius: 25px 0 0 25px;
+    border-right: none;
+    font-size: 14px;
+    color: #5a4a4a;
+    transition: all 0.3s;
+    outline: none;
+  }
+
+  .search-btn {
+    width: 50px;
+    border: 1px solid #e8d5d5;
+    border-left: none;
+    border-radius: 0 25px 25px 0;
+    background: linear-gradient(135deg, #d4a5a5 0%, #c49595 100%);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    outline: none;
+  }
+
+  .search-btn:hover {
+    background: linear-gradient(135deg, #c49595 0%, #b88585 100%);
+  }
+
+  .search-btn i {
+    font-size: 14px;
+  }
+
+  .start-input:focus {
+    outline: none;
+    border-color: #d4a5a5;
+    box-shadow: 0 0 0 2px rgba(212, 165, 165, 0.2);
+  }
+
+  .start-input::placeholder {
+    color: #b8a5a5;
+  }
+
+  .dropdown-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e8d5d5;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 2px;
+    width: 100%;
+  }
+
+  .dropdown-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0e8e8;
+    transition: all 0.2s;
+  }
+
+  .dropdown-item:hover {
+    background-color: #fff8f0;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .place-name {
+    font-weight: 500;
+    color: #5a4a4a;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  .place-address {
+    font-size: 12px;
+    color: #8b6f7e;
+  }
+
+  .loading-item {
+    padding: 15px;
+    text-align: center;
+    color: #8b6f7e;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .loading-item i {
+    color: #d4a5a5;
+  }
+
+  .no-results-item {
+    padding: 15px;
+    text-align: center;
+    color: #8b6f7e;
+    font-size: 14px;
+  }
+
+  .route-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .route-box input:not(:first-child) {
+    padding: 12px 15px;
+    border: 1px solid #e8d5d5;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #5a4a4a;
+    background-color: #f8f5f0;
+  }
+
+  .route-box input::placeholder {
+    color: #b8a5a5;
+  }
+
+  .route-btn {
+    padding: 12px;
+    background: linear-gradient(135deg, #d4a5a5 0%, #c49595 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    transition: all 0.3s;
+  }
+
+  .route-btn:hover {
+    background: linear-gradient(135deg, #c49595 0%, #b88585 100%);
+    transform: translateY(-1px);
   }
   
 

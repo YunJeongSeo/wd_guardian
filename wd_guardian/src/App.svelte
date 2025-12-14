@@ -1,5 +1,5 @@
 <script>
-  
+
   import SecIntor    from './components/Sec_intro.svelte';    /* intor */
   import SecCalendar from './components/Sec_calendar.svelte'; /* 달력 & D Day */
   import SecGallery  from './components/Sec_gallery.svelte';  /* 앨범 */
@@ -7,9 +7,11 @@
   import SecAccount  from './components/Sec_account.svelte';  /* 마음전하기 */
   import SecGuest    from './components/Sec_guest.svelte';    /* 방명록 */
   import SecShare    from './components/Sec_share.svelte';    /* 공유하기 */
+  import PetalFall   from './lib/PetalFall.svelte';           /* 꽃잎 이펙트 */
 </script>
 
 <main class='wrap'>
+  <PetalFall />
   <SecIntor />
   <SecCalendar />
   <SecGallery />

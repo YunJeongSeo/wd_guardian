@@ -54,32 +54,31 @@
           clearInterval(checkKakao);
           initMap();
         }
-      }, 100);
+      }, 500);
 
-      // 10초 후 타임아웃
       setTimeout(() => {
         clearInterval(checkKakao);
         if (!map) {
           error = '카카오맵 SDK 로딩 타임아웃';
           isLoading = false;
         }
-      }, 10000);
+      }, 15000);
     }
   });
 </script>
 
-{#if error}
-  <div class="error">{error}</div>
-{:else if isLoading}
-  <div class="loading">지도를 로딩 중입니다...</div>
-{/if}
-
-<div class="map-container" bind:this={mapContainer}></div>
+<div class="map-container" bind:this={mapContainer}>
+  {#if isLoading}
+    <div class="loading">지도를 불러오는 중...</div>
+  {:else if error}
+    <div class="error">{error}</div>
+  {/if}
+</div>
 
 <style>
   .map-container {
     width: 100%;
-    height: 500px;
+    height: 400px;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #ddd;
@@ -87,7 +86,7 @@
 
   .loading, .error {
     width: 100%;
-    height: 500px;
+    height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
