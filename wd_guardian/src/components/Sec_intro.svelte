@@ -194,8 +194,8 @@
     /* OP IMG */
     .op-img {
       width: 100%;
-      height: 95.55vw;
-      max-height: 520px;
+      /* height: 95.55vw; */
+      height: 520px;
       aspect-ratio: 4 / 3;   /* 비율 자동 유지 */
       border-radius: 200px 200px 0 0;
       overflow: hidden;

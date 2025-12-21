@@ -73,6 +73,58 @@
 }
 
 
+/* AUDIO BLOCK */
+.audio-block {
+  width: 100%;
+  height: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
+  /* AUDIO INNER */
+  .audio-inner {
+    width: 100%;
+    height: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* MUTE BUTTON */
+  .btn-mute-audio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: unset;
+    outline: unset;
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    font-size: 12px;
+    color: #544f4fcc;
+
+    svg {
+      display: none;
+    }
+
+    &.unmute svg.fa-volume-off {
+      display: block;
+    }
+
+    &.mute svg.fa-volume-xmark {
+      display: block;
+    }
+  }
+
+}
+/* AUDIO BLOCK // */
+
+
 #app {
   background-color: #f9e8eb;
 }
