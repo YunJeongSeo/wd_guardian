@@ -4,6 +4,9 @@
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
   import { onMount } from 'svelte';
+  import wdImg1 from '../assets/img/wd_photo/wd_img_1.jpg';
+  import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
+  import wdImg3 from '../assets/img/wd_photo/wd_img_3.jpg';
 
   let swiperEl;
   let swiper;
@@ -59,7 +62,7 @@
 
 
       <div class="gal-item">
-        <img src="/src/assets/img/wd_photo/wd_img_1.jpg" 
+        <img src={wdImg1}
         alt=""
         on:click={() => openPopup(0)}
         >
@@ -74,7 +77,7 @@
     <div class="gal-box">
 
       <div class="gal-item">
-        <img src="/src/assets/img/wd_photo/wd_img_2.jpg" 
+        <img src={wdImg2}
         alt=""
         on:click={() => openPopup(1)}
         >
@@ -88,7 +91,7 @@
     <div class="gal-box">
 
       <div class="gal-item">
-        <img src="/src/assets/img/wd_photo/wd_img_3.jpg" 
+        <img src={wdImg3}
         alt=""
         on:click={() => openPopup(2)}
         >
@@ -102,7 +105,7 @@
     <div class="gal-box">
 
       <div class="gal-item">
-        <img src="/src/assets/img/wd_photo/wd_img_1.jpg" 
+        <img src={wdImg1}
         alt=""
         on:click={() => openPopup(3)}
         >
@@ -129,12 +132,12 @@
 
 
     <div class="swiper gal-pop-block" bind:this={swiperEl}>
-      
+
       <div class="swiper-wrapper gal-pop-img-wrap">
-        <div class="swiper-slide gal-pop-img"><img src="/src/assets/img/wd_photo/wd_img_1.jpg" alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src="/src/assets/img/wd_photo/wd_img_2.jpg" alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src="/src/assets/img/wd_photo/wd_img_3.jpg" alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src="/src/assets/img/wd_photo/wd_img_1.jpg" alt=""></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg1} alt=""></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg2} alt=""></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg3} alt=""></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg1} alt=""></div>
       </div>
 
       <!-- <div class="swiper-pagination"></div> -->
