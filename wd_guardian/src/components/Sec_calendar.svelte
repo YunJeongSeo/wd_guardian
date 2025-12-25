@@ -41,7 +41,7 @@
 
     <span>의 결혼식이&nbsp;</span>
     <span class="dday">{ddayCount}</span>
-    <span>일&nbsp;남았습니다.</span>
+    <span>일&nbsp;남았습니다</span>
 
   </div>
   <!-- DDAY BLOCK // -->

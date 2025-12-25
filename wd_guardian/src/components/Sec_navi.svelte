@@ -4,6 +4,7 @@
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
   import KakaoMap from '../lib/KakaoMap.svelte';
+  import tmapImg from '../assets/img/tmap.png';
 
   let startInput = '';
   let endInput = '부산광역시 연제구 거제 1동 76-2 국제빌딩 4층';
@@ -407,7 +408,7 @@
               카카오내비
             </button>
             <button on:click={openTMap} class="tmap-btn">
-              <img src="/src/assets/img/tmap.png" alt="T MAP" class="tmap-icon" />
+              <img src={tmapImg} alt="T MAP" class="tmap-icon" />
               T MAP
             </button>
           </div>

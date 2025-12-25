@@ -33,7 +33,7 @@
   async function fetchGuestbook(page = 1) {
     try {
       isLoading = true;
-      const response = await fetch(`${API_URL}/guestbook?page=${page}`);
+      const response = await fetch(`${API_URL}/guestbook?page=${page}&limit=5`);
 
       if (!response.ok) {
         throw new Error('방명록을 불러오는데 실패했습니다.');
