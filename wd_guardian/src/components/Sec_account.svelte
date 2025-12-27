@@ -2,27 +2,15 @@
   /*
    *@Overview 마음전하기
    *@History  2025-10-30 / 미친토끼 / 최초생성
-  */
+   */
+  import { copyAccountInfo } from '../assets/common.js';
 
-  let copyMessage = '';
-  let copyTimeout;
   let showGroomParents = false;
   let showBrideParents = false;
 
   // 계좌번호 복사 함수
-  async function copyAccount(bankInfo) {
-    try {
-      await navigator.clipboard.writeText(bankInfo);
-      copyMessage = '계좌번호가 복사되었습니다!';
-
-      clearTimeout(copyTimeout);
-      copyTimeout = setTimeout(() => {
-        copyMessage = '';
-      }, 3000);
-    } catch (err) {
-      copyMessage = '복사에 실패했습니다.';
-      console.error('계좌번호 복사 실패:', err);
-    }
+  async function copyAccount(accountInfo) {
+    await copyAccountInfo(accountInfo);
   }
 
   // 계좌 정보
@@ -87,7 +75,7 @@
         <div class="account-buttons">
           <button
             class="btn-copy"
-            onclick={() => copyAccount(`${groomAccount.bank} ${groomAccount.number} ${groomAccount.name}`)}>
+            onclick={() => copyAccount(groomAccount)}>
             복사하기
           </button>
           <button class="btn-card" disabled>CARD</button>
@@ -115,7 +103,7 @@
                 <div class="account-buttons">
                   <button
                     class="btn-copy"
-                    onclick={() => copyAccount(`${account.bank} ${account.number} ${account.name}`)}>
+                    onclick={() => copyAccount(account)}>
                     복사하기
                   </button>
                   <button class="btn-card" disabled>CARD</button>
@@ -140,7 +128,7 @@
         <div class="account-buttons">
           <button
             class="btn-copy"
-            onclick={() => copyAccount(`${brideAccount.bank} ${brideAccount.number} ${brideAccount.name}`)}>
+            onclick={() => copyAccount(brideAccount)}>
             복사하기
           </button>
           <button class="btn-card" disabled>CARD</button>
@@ -168,7 +156,7 @@
                 <div class="account-buttons">
                   <button
                     class="btn-copy"
-                    onclick={() => copyAccount(`${account.bank} ${account.number} ${account.name}`)}>
+                    onclick={() => copyAccount(account)}>
                     복사하기
                   </button>
                   <button class="btn-card" disabled>CARD</button>
@@ -181,12 +169,6 @@
     </div>
 
     <div class="divider"></div>
-
-    {#if copyMessage}
-      <div class="copy-message">
-        {copyMessage}
-      </div>
-    {/if}
   </div>
 </section>
 
@@ -348,26 +330,5 @@
     cursor: not-allowed;
   }
 
-  .copy-message {
-    margin-top: 20px;
-    padding: 12px 20px;
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    text-align: center;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
 </style>
