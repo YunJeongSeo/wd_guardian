@@ -4,9 +4,8 @@
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
   import { onMount } from 'svelte';
+  import { copyToClipboard } from '../assets/common.js';
 
-  let copyMessage = '';
-  let copyTimeout;
   let isKakaoReady = false;
 
   // 카카오 API 키 (실제 JavaScript 키로 변경하세요)
@@ -17,30 +16,27 @@
     if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(KAKAO_KEY);
       isKakaoReady = true;
-      console.log('카카오 SDK 초기화 완료:', window.Kakao.isInitialized());
+    } else if (window.Kakao && window.Kakao.isInitialized()) {
+      isKakaoReady = true;
+    } else {
+      console.warn('⚠️ 카카오 SDK가 로드되지 않았습니다.');
     }
   });
 
   // 링크 복사 함수
   async function copyLink() {
-    try {
-      const url = window.location.href;
-      await navigator.clipboard.writeText(url);
-
-      copyMessage = '링크가 복사되었습니다!';
-
-      // 3초 후 메시지 제거
-      clearTimeout(copyTimeout);
-      copyTimeout = setTimeout(() => {
-        copyMessage = '';
-      }, 3000);
-    } catch (err) {
-      copyMessage = '복사에 실패했습니다.';
-      console.error('링크 복사 실패:', err);
-    }
+    const url = window.location.href;
+    await copyToClipboard(url, {
+      successMessage: '링크가 복사되었습니다.',
+      errorMessage: '링크 복사에 실패했습니다.',
+      duration: 3000,
+      showTooltip: true,
+      onSuccess: null,
+      onError: null
+    });
   }
 
-  // 카카오톡 공유하기
+  // 카카오톡 공유하기 - 스크랩 메시지 사용
   function shareKakao() {
     if (!window.Kakao || !isKakaoReady) {
       alert('카카오톡 공유 기능을 사용할 수 없습니다.');
@@ -48,26 +44,16 @@
     }
 
     try {
-      window.Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '💒 결혼합니다',
-          description: '저희 두 사람의 소중한 날, 함께해 주세요',
-          imageUrl: 'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
-          link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
-          },
+      // 커스텀 템플릿을 사용하여 전문적인 카드 형식 공유
+      window.Kakao.Share.sendScrap({
+        requestUrl: window.location.href,
+        templateId: 127211, // 커스텀 템플릿 ID 사용
+        templateArgs: {
+          // 템플릿에 전달할 인자들
+          // 카카오톡 개발자 도구에서 따로 설정해둬서 필요없음
+          // title: '태수호 💍 전혜선, 결혼합니다',
+          // description: '2026년 02월 22일 일요일 오후 1시\nW웨딩 K웨딩홀'
         },
-        buttons: [
-          {
-            title: '청첩장 보기',
-            link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
-            },
-          },
-        ],
       });
     } catch (err) {
       console.error('카카오톡 공유 실패:', err);
@@ -105,11 +91,6 @@
       </button>
     </div>
 
-    {#if copyMessage}
-      <div class="copy-message">
-        {copyMessage}
-      </div>
-    {/if}
   </div>
 </section>
 
@@ -186,26 +167,7 @@
     font-weight: 500;
   }
 
-  .copy-message {
-    margin-top: 30px;
-    padding: 12px 20px;
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    animation: fadeIn 0.3s ease;
-  }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   @media (max-width: 480px) {
     .share-link {
