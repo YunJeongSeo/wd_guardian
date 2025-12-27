@@ -106,7 +106,7 @@
 <style>
   .map-container {
     width: 100%;
-    height: 400px;
+    height: 200px;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid #ddd;
@@ -114,7 +114,7 @@
 
   .loading, .error {
     width: 100%;
-    height: 400px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
