@@ -6,10 +6,11 @@
   let isLoading = true;
   let error = '';
 
-  // 기본 좌표 (서울 시청)
-  export let latitude = 37.5665;
-  export let longitude = 126.9780;
+  // 기본 좌표 (부산광역시 연제구 거제 1동 76-2 국제빌딩 4층)
+  export let latitude = 35.195691768631;
+  export let longitude = 129.079444414394;
   export let level = 3;
+  export let address = "부산광역시 연제구 거제 1동 76-2 국제빌딩 4층";
 
   onMount(() => {
     // 카카오맵 SDK 로딩 대기
@@ -17,22 +18,49 @@
       if (window.kakao && window.kakao.maps) {
         window.kakao.maps.load(() => {
           try {
-            const container = mapContainer;
-            const options = {
-              center: new window.kakao.maps.LatLng(latitude, longitude),
-              level: level
-            };
+            // 주소로 좌표 검색
+            const geocoder = new window.kakao.maps.services.Geocoder();
 
-            map = new window.kakao.maps.Map(container, options);
+            geocoder.addressSearch(address, function(result, status) {
+              if (status === window.kakao.maps.services.Status.OK) {
+                const coords = new window.kakao.maps.LatLng(result[0].y, result[0].x);
 
-            // 마커 생성
-            const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
-            const marker = new window.kakao.maps.Marker({
-              position: markerPosition
+                const container = mapContainer;
+                const options = {
+                  center: coords,
+                  level: level
+                };
+
+                map = new window.kakao.maps.Map(container, options);
+
+                // 마커 생성
+                const marker = new window.kakao.maps.Marker({
+                  position: coords
+                });
+                marker.setMap(map);
+
+                isLoading = false;
+              } else {
+                // 주소 검색 실패 시 기본 좌표 사용
+                console.warn('주소 검색 실패, 기본 좌표 사용:', status);
+                const container = mapContainer;
+                const options = {
+                  center: new window.kakao.maps.LatLng(latitude, longitude),
+                  level: level
+                };
+
+                map = new window.kakao.maps.Map(container, options);
+
+                // 마커 생성
+                const markerPosition = new window.kakao.maps.LatLng(latitude, longitude);
+                const marker = new window.kakao.maps.Marker({
+                  position: markerPosition
+                });
+                marker.setMap(map);
+
+                isLoading = false;
+              }
             });
-            marker.setMap(map);
-
-            isLoading = false;
           } catch (e) {
             error = '지도 초기화 실패: ' + e.message;
             isLoading = false;

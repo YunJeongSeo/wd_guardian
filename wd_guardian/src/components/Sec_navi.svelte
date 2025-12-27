@@ -143,8 +143,8 @@
     const startName = encodeURIComponent(selectedStartPlace.place_name);
 
     // 도착지 좌표 (웨딩홀)
-    const endLat = 35.1867;
-    const endLng = 129.0803;
+    const endLat = 35.195691768631;
+    const endLng = 129.079444414394;
     const endName = encodeURIComponent('부산광역시 연제구 거제 1동 76-2 국제빌딩 4층');
 
     // 모바일 기기에서는 카카오내비 앱 실행 시도
@@ -172,8 +172,8 @@
   // 카카오 네비 앱 실행 함수
   function openKakaoNavi() {
     // 도착지 좌표 (웨딩홀)
-    const endLat = 35.1867;
-    const endLng = 129.0803;
+    const endLat = 35.195691768631;
+    const endLng = 129.079444414394;
 
     // 모바일 기기에서 카카오네비 앱 실행
     if (isMobile() && typeof window.Kakao !== 'undefined' && window.Kakao.Navi) {
@@ -199,8 +199,8 @@
 
   // T MAP 앱 실행 함수
   function openTMap() {
-    const endLat = 35.1867; // 웨딩홀 위도
-    const endLng = 129.0803; // 웨딩홀 경도
+    const endLat = 35.195691768631; // 웨딩홀 위도
+    const endLng = 129.079444414394; // 웨딩홀 경도
     const endName = '국제빌딩 4층';
 
     // 출발지가 선택된 경우 출발지 정보 포함
@@ -362,7 +362,7 @@
 
       <!-- MAP API -->
       <div class="map-api">
-        <KakaoMap latitude={35.1867} longitude={129.0803} level={3} />
+        <KakaoMap address="부산광역시 연제구 거제 1동 76-2 국제빌딩 4층" latitude={35.195691768631} longitude={129.079444414394} level={3} />
       </div>
 
       <!-- 길찾기 컨테이너 -->

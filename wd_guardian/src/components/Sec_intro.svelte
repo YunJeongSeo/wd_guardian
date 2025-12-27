@@ -6,6 +6,7 @@
   import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
   import introDevImg from '../assets/img/sec_intro_dev.png';
   import introFlowerImg from '../assets/img/sec_intro_flower.png';
+  import PetalFall from '../lib/PetalFall.svelte';
 </script>
 
 <section class="sec sec-intro">
@@ -30,6 +31,7 @@
     <div class="op-img">
 
       <img src={wdImg2} alt="">
+      <PetalFall />
 
     </div>
     <!-- OP IMG -->
@@ -193,6 +195,7 @@
 
     /* OP IMG */
     .op-img {
+      position: relative;
       width: 100%;
       /* height: 95.55vw; */
       height: 520px;

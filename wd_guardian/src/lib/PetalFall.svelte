@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  const PETAL_MIN_SCALE = 0.3;
+  const PETAL_MIN_SCALE = 0.2;
   const MELTING_SPEED = 1.15;
   // 부드러운 파스텔 핑크 꽃잎 색상 배열
   const PETAL_COLORS = ['#ffcce6', '#ffb3d9', '#ff99cc', '#ffb3e0', '#ffcce8', '#ffd6eb', '#ffe6f2'];
@@ -42,15 +42,9 @@
     "M50 15 C56 17, 64 20, 70 28 C72 36, 70 44, 64 52 C58 58, 52 62, 50 63 C48 62, 42 58, 36 52 C30 44, 28 36, 30 28 C36 20, 44 17, 50 15 Z"
   ];
 
-  // 디바이스 타입에 따른 꽃잎 수 결정
+  // 디바이스 타입에 따른 꽃잎 수 결정 (모바일/PC 통일)
   function getPetalsCount() {
-    if (typeof window === 'undefined') return 50; // SSR 기본값
-
-    // 모바일 감지: 화면 너비가 768px 이하이거나 터치 디바이스
-    const isMobile = window.innerWidth <= 768 ||
-                     ('ontouchstart' in window || navigator.maxTouchPoints > 0);
-
-    return isMobile ? 30 : 70; // 모바일: 30개, PC: 70개
+    return 40; // 모든 디바이스에서 1 ~ 40개로 통일
   }
 
   const PETALS_COUNT = getPetalsCount();
@@ -58,7 +52,7 @@
   function randomPetalConfig(i) {
     const initialX = -20 + Math.random() * 120;
     return {
-      scale: PETAL_MIN_SCALE + Math.random() * (1 - PETAL_MIN_SCALE),
+      scale: PETAL_MIN_SCALE + Math.random() * (0.8 - PETAL_MIN_SCALE),
       x: initialX,
       y: -100 + Math.random() * 200,
       rotation: Math.floor(Math.random() * 360), // 더 다양한 초기 회전 각도
@@ -66,13 +60,13 @@
       color: PETAL_COLORS[i % PETAL_COLORS.length],
       opacity: 0.999,
       // 각 꽃잎마다 고유한 물리 속성
-      fallSpeed: 0.1 + Math.random() * 0.3, // 떨어지는 속도 더 다양화 (0.1 ~ 0.4)
-      windSensitivity: 0.8 + Math.random() * 2.0, // 바람 민감도 증가 (0.8 ~ 2.8)
-      rotationSpeed: 0, // 회전 속도 0으로 설정하여 회전하지 않음
-      swayPhase: Math.random() * Math.PI * 2, // 좌우 흔들림 위상 (주요 흔들림)
+      fallSpeed: (0.1 + Math.random() * 0.3) * 2, // 떨어지는 속도 더 다양화 (0.15 ~ 0.6), 1.5배 증가
+      windSensitivity: 0.8 + Math.random() * 4, // 바람 민감도 증가 (0.8 ~ 2.8)
+      rotationSpeed: (Math.random() - 0.5) * 2, // 회전 속도 (-2.67 ~ +2.67), 랜덤 방향 회전 (1/3 속도)
+      swayPhase: Math.random() * Math.PI * 6, // 좌우 흔들림 위상 (주요 흔들림)
       swayPhase2: Math.random() * Math.PI * 2, // 보조 흔들림 위상 (더 빠른 미세한 움직임)
       windPhase: Math.random() * Math.PI * 2, // 바람 위상
-      horizontalDrift: (Math.random() - 0.5) * 0.08, // 기본 수평 이동 증가
+      horizontalDrift: (Math.random() - 0.5) * 0.9, // 기본 수평 이동 증가 (사선 효과 강화)
       baseX: initialX, // 기준 X 위치 (흔들림 계산용)
     };
   }
@@ -134,7 +128,8 @@
           const tiltAngle = totalSway * 0.5; // 흔들림에 비례하여 기울기
           const rotationVariation = Math.sin(windPhase * 0.7) * 1.2; // 바람에 의한 회전 변화
 
-          // 회전 효과 제거 - 각 꽃잎이 고정된 랜덤 회전 각도를 유지
+          // 회전 효과 추가 - 꽃잎이 떨어지면서 회전
+          petal.rotation += petal.rotationSpeed * framesCompleted;
 
           // 회전 각도 정규화 (0~360도 유지)
           if (petal.rotation >= 360) petal.rotation -= 360;
@@ -176,12 +171,16 @@
 
 <div class="petalframe" aria-hidden="true">
   {#each petals as petal}
-    <svg
-      class="petal"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 140"
-      style="opacity: {petal.opacity}; transform-origin: center; transform: translateX({petal.x - petal.baseX}px) rotate({petal.rotation}deg) scale({petal.scale}); left: {petal.baseX}%; top: calc({petal.y}% - {petal.scale * 2}rem); width: {petal.scale * 2}rem; height: {petal.scale * 2.8}rem;"
+    <div
+      class="petal-wrapper"
+      style="left: {petal.baseX}%; top: calc({petal.y}% - {petal.scale * 2}rem); opacity: {petal.opacity}; transform: translateX({petal.x - petal.baseX}px);"
     >
+      <svg
+        class="petal"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 140"
+        style="transform-origin: center; transform: rotate({petal.rotation}deg) scale({petal.scale}); width: {petal.scale * 2}rem; height: {petal.scale * 2.8}rem;"
+      >
       <defs>
         <!-- 그라데이션: 상단에 노란색 힌트, 중앙은 핑크, 하단은 반투명 -->
         <linearGradient id="petalGradient-{petal.color.replace('#', '')}" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -218,25 +217,28 @@
         opacity="0.15"
       />
     </svg>
+    </div>
   {/each}
 </div>
 
 <style>
   .petalframe {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     overflow: hidden;
     pointer-events: none;
-    z-index: 1000;
   }
 
-  .petal {
+  .petal-wrapper {
     position: absolute;
     user-select: none;
     pointer-events: none;
+  }
+
+  .petal {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 </style>
