@@ -80,7 +80,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99;
+  z-index: 9;
 
   /* AUDIO INNER */
   .audio-inner {
@@ -107,6 +107,9 @@
     background-color: transparent;
     font-size: 12px;
     color: #544f4fcc;
+    opacity: 0;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: fade-in-out .5s .3s both;
 
     svg {
       display: none;
@@ -127,4 +130,10 @@
 
 #app {
   background-color: #f9e8eb;
+}
+
+
+@keyframes fade-in-out {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }

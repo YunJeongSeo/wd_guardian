@@ -487,7 +487,7 @@
   }
 
   .form-group textarea {
-    resize: vertical;
+    resize: unset;
     min-height: 80px;
   }
 

@@ -3,10 +3,14 @@
    *@Overview intro 화면
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
+  import wdImg1 from '../assets/img/wd_photo/wd_img_1.jpg';
   import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
   import introDevImg from '../assets/img/sec_intro_dev.png';
+  import introDevSvg from '../assets/img/sec_intro_dev.svg';
   import introFlowerImg from '../assets/img/sec_intro_flower.png';
+  import introFlowerSvg from '../assets/img/sec_intro_flower.svg';
   import PetalFall from '../lib/PetalFall.svelte';
+
 </script>
 
 <section class="sec sec-intro">
@@ -17,7 +21,7 @@
 
 
     <!-- HEAD TITLE -->
-    <div class="head-tit">
+    <div class="head-tit" data-aos="fade-up" data-aos-duration="3000">
 
       <div class="tit-name groom">태수호</div>
       <div class="tit-name icon" ><i class="fa-solid fa-heart"></i></div>
@@ -28,9 +32,9 @@
 
 
     <!-- OP IMG -->
-    <div class="op-img">
+    <div class="op-img" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
 
-      <img src={wdImg2} alt="">
+      <img src={wdImg1} alt="">
       <PetalFall />
 
     </div>
@@ -38,10 +42,10 @@
 
 
     <!-- OP TEXT -->
-    <div class="op-text">
+    <div class="op-text" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
 
       <p class='playfair-display-font'>Happy wedding day</p>
-      <img src={introDevImg} alt="">
+      <img src={introDevSvg} alt="">
 
     </div>
     <!-- OP TEXT // -->
@@ -52,7 +56,7 @@
   
 
   <!-- OP CONT AREA -->
-  <div class="intro-block opcont-area">
+  <div class="intro-block opcont-area" data-aos="fade-up" data-aos-duration="1500">
 
 
     <!-- WD DATE CONT -->
@@ -71,7 +75,7 @@
 
 
       <!-- IMG -->
-      <img src={introFlowerImg} alt="">
+      <img src={introFlowerSvg} alt="">
       <!-- IMG -->
 
 
@@ -186,10 +190,10 @@
     .head-tit {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 4px;
       font-size: 1.125rem;
 
-      .icon { font-size: .875rem ;}
+      .icon { font-size: 10px ;}
     }
 
 
@@ -198,7 +202,7 @@
       position: relative;
       width: 100%;
       /* height: 95.55vw; */
-      height: 520px;
+      height: 560px;
       aspect-ratio: 4 / 3;   /* 비율 자동 유지 */
       border-radius: 200px 200px 0 0;
       overflow: hidden;
@@ -307,6 +311,12 @@
 
   }
   /* OP CONT AREA // */
+
+
+  @keyframes fade-in-out {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
 
 </style>

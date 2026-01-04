@@ -127,7 +127,7 @@
 
 </script>
 
-<section class="sec sec-navi">
+<section class="sec sec-navi" data-aos="fade-up" data-aos-duration="1500">
 
 
   <!-- NAV TITLE -->

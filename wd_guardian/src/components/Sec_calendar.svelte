@@ -99,7 +99,7 @@
   });
 </script>
 
-<section class="sec sec-cal">
+<section class="sec sec-cal" data-aos="fade-up" data-aos-duration="1500">
 
   <!-- CALENDAR BLOCK -->
   <div class="cal-block">
@@ -204,6 +204,7 @@
 
   .dday-icon {
     color: #FF8B6B;
+    font-size: 10px;
   }
 
   .dday {
