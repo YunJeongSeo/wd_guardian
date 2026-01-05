@@ -4,10 +4,10 @@
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
   import { onMount } from 'svelte';
-  import wdImg1 from '../assets/img/wd_photo/wd_img_1.jpg';
-  import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
-  import wdImg3 from '../assets/img/wd_photo/wd_img_3.jpg';
-
+  import wdImg1 from '../assets/img/wd_photo/wd_img_1.jpeg?format=webp&w=1200&quality=80';
+  import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpeg?format=webp&w=1200&quality=80';
+  import wdImg3 from '../assets/img/wd_photo/wd_img_3.jpeg?format=webp&w=1200&quality=80';
+  import wdImg4 from '../assets/img/wd_photo/wd_img_4.jpeg?format=webp&w=1200&quality=80';
   let swiperEl;
   let swiper;
   let isOpen = false;
@@ -64,6 +64,7 @@
       <div class="gal-item">
         <img src={wdImg1}
         alt=""
+        loading="lazy"
         on:click={() => openPopup(0)}
         >
       </div>
@@ -79,6 +80,7 @@
       <div class="gal-item">
         <img src={wdImg2}
         alt=""
+        loading="lazy"
         on:click={() => openPopup(1)}
         >
       </div>
@@ -93,6 +95,7 @@
       <div class="gal-item">
         <img src={wdImg3}
         alt=""
+        loading="lazy"
         on:click={() => openPopup(2)}
         >
       </div>
@@ -105,8 +108,9 @@
     <div class="gal-box">
 
       <div class="gal-item">
-        <img src={wdImg1}
+        <img src={wdImg4}
         alt=""
+        loading="lazy"
         on:click={() => openPopup(3)}
         >
       </div>
@@ -134,10 +138,10 @@
     <div class="swiper gal-pop-block" bind:this={swiperEl}>
 
       <div class="swiper-wrapper gal-pop-img-wrap">
-        <div class="swiper-slide gal-pop-img"><img src={wdImg1} alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src={wdImg2} alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src={wdImg3} alt=""></div>
-        <div class="swiper-slide gal-pop-img"><img src={wdImg1} alt=""></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg1} alt="" loading="lazy"></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg2} alt="" loading="lazy"></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg3} alt="" loading="lazy"></div>
+        <div class="swiper-slide gal-pop-img"><img src={wdImg4} alt="" loading="lazy"></div>
       </div>
 
       <!-- <div class="swiper-pagination"></div> -->

@@ -78,7 +78,7 @@
             onclick={() => copyAccount(groomAccount)}>
             복사하기
           </button>
-          <button class="btn-card" disabled>CARD</button>
+          <!-- <button class="btn-card" disabled>CARD</button> -->
         </div>
       </div>
     </div>
@@ -106,7 +106,7 @@
                     onclick={() => copyAccount(account)}>
                     복사하기
                   </button>
-                  <button class="btn-card" disabled>CARD</button>
+                  <!-- <button class="btn-card" disabled>CARD</button> -->
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
             onclick={() => copyAccount(brideAccount)}>
             복사하기
           </button>
-          <button class="btn-card" disabled>CARD</button>
+          <!-- <button class="btn-card" disabled>CARD</button> -->
         </div>
       </div>
     </div>
@@ -159,7 +159,7 @@
                     onclick={() => copyAccount(account)}>
                     복사하기
                   </button>
-                  <button class="btn-card" disabled>CARD</button>
+                  <!-- <button class="btn-card" disabled>CARD</button> -->
                 </div>
               </div>
             </div>

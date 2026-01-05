@@ -3,7 +3,7 @@
    *@Overview intro 화면
    *@History  2025-10-30 / 미친토끼 / 최초생성
   */
-  import wdImg2 from '../assets/img/wd_photo/wd_img_2.jpg';
+  import wdImg2 from '../assets/img/wd_photo/intro.jpeg?format=webp&w=1200&quality=80';
   import introDevImg from '../assets/img/sec_intro_dev.png';
   import introFlowerImg from '../assets/img/sec_intro_flower.png';
   import PetalFall from '../lib/PetalFall.svelte';
