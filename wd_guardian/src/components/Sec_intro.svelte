@@ -32,7 +32,7 @@
 
 
     <!-- OP IMG -->
-    <div class="op-img" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
+    <div class="op-img" data-aos="fade-up" data-aos-duration="3000">
 
       <img src={wdImg1} alt="">
       <PetalFall />
@@ -42,7 +42,7 @@
 
 
     <!-- OP TEXT -->
-    <div class="op-text" data-aos="fade-up" data-aos-duration="3000" data-aos-delay="1000">
+    <div class="op-text" data-aos="fade-up" data-aos-duration="3000">
 
       <p class='playfair-display-font'>Happy wedding day</p>
       <img src={introDevSvg} alt="">
