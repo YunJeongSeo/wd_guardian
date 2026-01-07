@@ -62,7 +62,7 @@
   }
 </script>
 
-<section class="share-section">
+<section class="share-section" data-aos="fade-up" data-aos-duration="1500">
   <div class="share-container">
     <!-- 장식 구분선 -->
     <div class="divider">

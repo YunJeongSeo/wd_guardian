@@ -58,7 +58,7 @@
   ];
 </script>
 
-<section class="account-section">
+<section class="account-section" data-aos="fade-up" data-aos-duration="1500">
   <div class="account-container">
     <h2 class="account-title">마음을 전하는 곳</h2>
 
