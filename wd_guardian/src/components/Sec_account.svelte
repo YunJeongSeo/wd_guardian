@@ -45,15 +45,15 @@
   const brideParentsAccounts = [
     {
       relation: '아버지',
-      bank: '국민은행',
-      number: '000-0000-0000-00',
-      name: '전○○'
+      bank: '부산은행',
+      number: '065120479770',
+      name: '전명진'
     },
     {
       relation: '어머니',
       bank: '국민은행',
-      number: '000-0000-0000-00',
-      name: '○○○'
+      number: '93602155845',
+      name: '유재임' 
     }
   ];
 </script>
