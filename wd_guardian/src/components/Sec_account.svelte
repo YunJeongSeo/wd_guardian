@@ -30,15 +30,15 @@
   const groomParentsAccounts = [
     {
       relation: '아버지',
-      bank: '농협은행',
-      number: '000-0000-0000-00',
-      name: '태○○'
+      bank: '수협은행',
+      number: '82962044288',
+      name: '태진휘'
     },
     {
       relation: '어머니',
       bank: '농협은행',
-      number: '000-0000-0000-00',
-      name: '○○○'
+      number: '3020125795721',
+      name: '하미숙'
     }
   ];
 
